@@ -6,8 +6,5 @@ In this repository the exhaustive study of the 4D cases is provided.
 - In the file [exhaustive_list.txt](https://github.com/Cimagroup/Euler-WCness/blob/master/exhaustive_list.txt), a list with `(Int, [[Int]],Bool, Bool)` where the first element is the size of the set of hypercubes, the second is one of them, the third element corresponds to the self-dual Euler cell-composedness, and the last one to the digitally well-composedness.
 
 
-[![Watch the video](https://github.com/Cimagroup/Euler-WCness/blob/master/3d.png)](https://www.geogebra.org/m/skrdgj6j)
-
-
-![Watch the video](https://github.com/Cimagroup/Euler-WCness/blob/master/4d.png)
-
+<img src="https://github.com/Cimagroup/Euler-WCness/blob/master/3d.png" width="400" />
+<img src="https://github.com/Cimagroup/Euler-WCness/blob/master/4d.png" width="400" />
