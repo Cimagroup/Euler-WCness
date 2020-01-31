@@ -7,3 +7,9 @@ In this repository the exhaustive study of the 4D cases is provided.
 
 
 <iframe scrolling="no" title="3d_Cases" src="https://www.geogebra.org/material/iframe/id/eskurhee/width/1911/height/1017/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="1911px" height="1017px" style="border:0px;"> </iframe>
+
+
+<ggb_applet id="eskurhee" width="1911" height="1017" border="888888" />
+
+
+https://www.geogebra.org/material/gsites/id/eskurhee/width/1911/height/1017
