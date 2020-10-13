@@ -1,18 +1,21 @@
 import Data.List
 import Data.Matrix as M
 
+
 noInt x = not (x == fromInteger (round x))
 
--- List of all the hypercubes
---hypercubes_list :: [[Int]]
-hypercubes_list = [[a,b,c,d] | a <- [0,1], b<-[0,1], c <- [0,1], d <- [0,1]]
+-- Lists of n-cells
 
+-- Hipercubes
+hypercubes_list = [[a,b,c,d] | a <- [0,1], b <-[0,1], c <- [0,1], d <- [0,1]]
 
+-- Cubes from Hypercubes
 cubes_hypercube [a,b,c,d] = [[a+a1,b,c,d] | a1 <-[0.5,-0.5]]
                           ++ [[a,b+b1,c,d] | b1 <-[0.5,-0.5]]
                           ++ [[a,b,c+c1,d] | c1 <-[0.5,-0.5]]
                           ++ [[a,b,c,d+d1] | d1 <-[0.5,-0.5]]
 
+-- Faces from Cubes
 faces_cube [a,b,c,d] | noInt a = [[a,b+b1,c,d] | b1 <- [0.5,-0.5]] 
                              ++ [[a,b,c+c1,d] | c1 <- [0.5,-0.5]]
                              ++ [[a,b,c,d+d1] | d1 <- [0.5,-0.5]]
@@ -29,6 +32,7 @@ faces_cube [a,b,c,d] | noInt a = [[a,b+b1,c,d] | b1 <- [0.5,-0.5]]
 list_faces_from_cube xss = concat [faces_cube xs | xs <- xss]
 
 
+-- Edges from faces
 edges_faces [a,b,c,d] | noInt a && noInt b = [[a,b,c+c1,d] | c1<- [0.5,-0.5]]
                                      ++[[a,b,c,d+d1] | d1<- [0.5,-0.5]]
                       | noInt a && noInt c = [[a,b+b1,c,d] | b1<- [0.5,-0.5]]
@@ -44,6 +48,7 @@ edges_faces [a,b,c,d] | noInt a && noInt b = [[a,b,c+c1,d] | c1<- [0.5,-0.5]]
 
 list_edges_from_faces xss = nub (concat [edges_faces xs| xs <- xss])
 
+-- Vertices from edges
 vertices_edges [a,b,c,d] | not (noInt a) = [[a+a1,b,c,d]|a1<-[0.5,-0.5]]
                          | not (noInt b) = [[a,b+b1,c,d]|b1<-[0.5,-0.5]]
                          | not (noInt c) = [[a,b,c+c1,d]|c1<-[0.5,-0.5]]
@@ -51,8 +56,10 @@ vertices_edges [a,b,c,d] | not (noInt a) = [[a+a1,b,c,d]|a1<-[0.5,-0.5]]
 
 list_vertices_from_edges xss = nub (concat [vertices_edges xs | xs <- xss])
 
+-- 
 
 
+-- Determine the cells that are not adjacent to the origin vertex. 
 not_adjacent xss = [xs | xs <- xss, (elem 0.5 xs == False)]
 
 
@@ -73,12 +80,16 @@ euler_link :: [[Double]] -> Int
 euler_link hs = num_verticesL hs -num_edgesL hs+num_facesL hs-num_CubesL hs
 
 -- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --
-        
+
+
 adjacent x xs = [y | y <- xs, hammingDistance x y == 1]
 
+
+-- Auxiliar function
 removeItems xs ys = [x | x <- xs, not (elem x ys)]
 
 
+-- Hipercubes in the dual
 dualHcubes xs = removeItems hypercubes_list xs
 
 
@@ -188,3 +199,5 @@ pr16 n =  [x | x <- subsets n, cond x]
                   where
                         cond hs = ( dwc hs) && (euler_link hs ==1) && (dwc dhs) && (euler_link dhs ==1) 
                              where dhs = dualHcubes hs
+
+
