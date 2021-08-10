@@ -1,3 +1,6 @@
+
+# This repository is not valid anymore. Euler Well Composedness definition has been replaced and the new experiments and results should be consulted in [Strong Euler Well-Composedness](https://github.com/Cimagroup/Strong-Euler-Well-Composed)
+
 # Euler-WCness
 
 In this repository the exhaustive study of the 4D cases is provided.
